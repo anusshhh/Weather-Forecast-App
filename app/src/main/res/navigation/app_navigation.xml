@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation.xml"
+    app:startDestination="@id/weatherFragment">
+
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="com.example.weatherforecastapp.ui.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" >
+        <action
+            android:id="@+id/action_weatherFragment_to_weatherForecastFragment"
+            app:destination="@id/weatherForecastFragment" />
+        <action
+            android:id="@+id/action_weatherFragment_to_permissionDeniedFragment"
+            app:destination="@id/permissionDeniedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteLocationFragment"
+        android:name="com.example.weatherforecastapp.ui.FavouriteLocationFragment"
+        android:label="fragment_favourite_location"
+        tools:layout="@layout/fragment_favourite_location" >
+        <action
+            android:id="@+id/action_favouriteLocationFragment_to_weatherFragment"
+            app:destination="@id/weatherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weatherForecastFragment"
+        android:name="com.example.weatherforecastapp.ui.WeatherForecastFragment"
+        android:label="fragment_weather_forecast"
+        tools:layout="@layout/fragment_weather_forecast" >
+        <action
+            android:id="@+id/action_weatherForecastFragment_to_permissionDeniedFragment"
+            app:destination="@id/permissionDeniedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/permissionDeniedFragment"
+        android:name="com.example.weatherforecastapp.ui.PermissionDeniedFragment"
+        android:label="PermissionDeniedFragment" />
+</navigation>

@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Weather Forecast App</string>
+    <string name="every_day">Every day</string>
+    <string name="ask_location_permission">Let this app access your location to find fetch weather information</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind">Windy</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="enable_location">ENABLE LOCATION</string>
+    <string name="search">Search</string>
+    <string name="favourite">Favourite</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="every_day">Every day</string>
 </resources>

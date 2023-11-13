@@ -125,10 +125,13 @@
     <dimen name="dimen_150dp">150dp</dimen>
     <dimen name="dimen_170dp">170dp</dimen>
     <dimen name="dimen_175dp">175dp</dimen>
+    <dimen name="dimen_180dp">180dp</dimen>
     <dimen name="dimen_120dp">120dp</dimen>
     <dimen name="dimen_300dp">300dp</dimen>
     <dimen name="dimen_325dp">325dp</dimen>
     <dimen name="dimen_350dp">350dp</dimen>
+    <dimen name="dimen_510dp">510dp</dimen>
+
 
     <dimen name="dimen_0sp">0sp</dimen>
     <dimen name="dimen_1sp">1sp</dimen>

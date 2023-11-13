@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".FavouriteLocationFragment">
+    tools:context=".ui.FavouriteLocationFragment">
 
     <TextView
         android:id="@+id/tv_favourite_locations"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/dimen_20dp"
         android:fontFamily="@font/lato_bold"
-        android:textColor="@color/dark_purple"
+        android:textColor="@color/sky_blue"
         android:textSize="@dimen/dimen_30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
