@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/weatherFragment"
-        android:name="com.example.weatherforecastapp.ui.WeatherFragment"
+        android:name="com.example.weatherforecastapp.ui.feature.weather.WeatherFragment"
         android:label="fragment_weather"
         tools:layout="@layout/fragment_weather" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/favouriteLocationFragment"
-        android:name="com.example.weatherforecastapp.ui.FavouriteLocationFragment"
+        android:name="com.example.weatherforecastapp.ui.feature.favouritelocation.FavouriteLocationFragment"
         android:label="fragment_favourite_location"
         tools:layout="@layout/fragment_favourite_location" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/weatherForecastFragment"
-        android:name="com.example.weatherforecastapp.ui.WeatherForecastFragment"
+        android:name="com.example.weatherforecastapp.ui.feature.WeatherForecastFragment"
         android:label="fragment_weather_forecast"
         tools:layout="@layout/fragment_weather_forecast" >
         <action
@@ -37,6 +37,19 @@
     </fragment>
     <fragment
         android:id="@+id/permissionDeniedFragment"
-        android:name="com.example.weatherforecastapp.ui.PermissionDeniedFragment"
+        android:name="com.example.weatherforecastapp.ui.feature.PermissionDeniedFragment"
         android:label="PermissionDeniedFragment" />
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.example.weatherforecastapp.ui.feature.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreen_to_weatherFragment"
+            app:destination="@id/weatherFragment" />
+        <action
+            android:id="@+id/action_splashScreen_to_permissionDeniedFragment"
+            app:destination="@id/permissionDeniedFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.weatherforecastapp.model
+package com.example.weatherforecastapp.model.api
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

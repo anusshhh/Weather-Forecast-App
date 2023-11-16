@@ -1,10 +1,8 @@
-package com.example.weatherforecastapp.ui
+package com.example.weatherforecastapp.ui.feature
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
@@ -12,7 +10,6 @@ import androidx.navigation.findNavController
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.ActivityMainBinding
 import com.example.weatherforecastapp.extensions.makeShortToast
-import com.example.weatherforecastapp.viewmodel.WeatherViewModel
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
-
 
         setContentView(view)
 
@@ -61,6 +57,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun onFavoriteMenuItemClick() {
+        navController.popBackStack(R.id.favouriteLocationFragment,true)
         navController.navigate(R.id.favouriteLocationFragment)
     }
 
@@ -72,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             val bundle = Bundle().apply {
                 putString("searchQuery", query)
             }
+            navController.popBackStack()
             navController.navigate(R.id.weatherFragment, bundle)
         }
     }

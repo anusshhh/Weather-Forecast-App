@@ -17,7 +17,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_location"
+            android:id="@+id/iv_locationIcon"
             android:layout_width="@dimen/dimen_30dp"
             android:layout_height="@dimen/dimen_30dp"
             android:src="@drawable/ic_location"
@@ -25,12 +25,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_locationName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_20dp"
             android:fontFamily="@font/lato_bold"
             android:textSize="@dimen/dimen_20sp"
-            app:layout_constraintStart_toEndOf="@id/iv_location"
+            app:layout_constraintStart_toEndOf="@id/iv_locationIcon"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Mumbai,India" />
     </androidx.constraintlayout.widget.ConstraintLayout>

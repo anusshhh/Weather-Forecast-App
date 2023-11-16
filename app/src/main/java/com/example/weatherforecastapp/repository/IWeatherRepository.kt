@@ -4,7 +4,7 @@ import com.example.weatherforecastapp.model.api.WeatherData
 import com.example.weatherforecastapp.network.ApiResponse
 import kotlinx.coroutines.flow.Flow
 
-interface WeatherRepository {
+interface IWeatherRepository {
     fun getCurrentWeatherData(query: String):  Flow<ApiResponse<WeatherData?>>
 
     fun getCurrentWeatherData(latitude: Double, longitude: Double):  Flow<ApiResponse<WeatherData?>>

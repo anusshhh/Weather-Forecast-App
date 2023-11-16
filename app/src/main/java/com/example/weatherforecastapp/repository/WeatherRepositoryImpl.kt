@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class WeatherRepositoryImpl constructor(private val weatherApiService: WeatherApiService) : WeatherRepository {
+class WeatherRepositoryImpl constructor(private val weatherApiService: WeatherApiService) :
+    IWeatherRepository {
     override fun getCurrentWeatherData(query: String): Flow<ApiResponse<WeatherData?>> = flow {
         val result = weatherApiService.getCurrentWeatherData(query)
         if (result.isSuccessful) {

@@ -128,6 +128,8 @@
     <dimen name="dimen_180dp">180dp</dimen>
     <dimen name="dimen_120dp">120dp</dimen>
     <dimen name="dimen_300dp">300dp</dimen>
+    <dimen name="dimen_380dp">380dp</dimen>
+    <dimen name="dimen_400dp">400dp</dimen>
     <dimen name="dimen_325dp">325dp</dimen>
     <dimen name="dimen_350dp">350dp</dimen>
     <dimen name="dimen_510dp">510dp</dimen>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ui.FavouriteLocationFragment">
+    tools:context=".ui.feature.favouritelocation.FavouriteLocationFragment">
 
     <TextView
         android:id="@+id/tv_favourite_locations"
@@ -13,14 +13,15 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/dimen_20dp"
         android:fontFamily="@font/lato_bold"
+        android:text="@string/favourite_locations_title"
         android:textColor="@color/sky_blue"
         android:textSize="@dimen/dimen_30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Favourite Locations" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_favourite_locations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_10dp"

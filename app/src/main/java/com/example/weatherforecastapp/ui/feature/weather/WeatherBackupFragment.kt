@@ -1,4 +1,4 @@
-package com.example.weatherforecastapp.ui
+package com.example.weatherforecastapp.ui.feature.weather
 
 import android.os.Bundle
 import android.view.LayoutInflater
