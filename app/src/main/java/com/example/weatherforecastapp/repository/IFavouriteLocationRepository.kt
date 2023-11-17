@@ -11,4 +11,7 @@ interface IFavouriteLocationRepository {
 
     fun getAllFavoriteLocations(): Flow<List<FavouriteLocation>>
 
+    suspend fun getFavoriteLocationByCoordinates(latitude : Double, longitude : Double) : FavouriteLocation?
+
+    suspend fun deleteFavouriteLocation(existingFavouriteLocation:FavouriteLocation): Int
 }

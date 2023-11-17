@@ -8,48 +8,52 @@
     <fragment
         android:id="@+id/weatherFragment"
         android:name="com.example.weatherforecastapp.ui.feature.weather.WeatherFragment"
-        android:label="fragment_weather"
-        tools:layout="@layout/fragment_weather" >
+        android:label="Weather Forecast App"
+        tools:layout="@layout/fragment_weather">
         <action
-            android:id="@+id/action_weatherFragment_to_weatherForecastFragment"
-            app:destination="@id/weatherForecastFragment" />
-        <action
-            android:id="@+id/action_weatherFragment_to_permissionDeniedFragment"
-            app:destination="@id/permissionDeniedFragment" />
+            android:id="@+id/action_weatherFragment_to_favouriteLocationFragment"
+            app:destination="@id/favouriteLocationFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/favouritesWeatherFragment"
+        android:name="com.example.weatherforecastapp.ui.feature.weather.WeatherFragment"
+        android:label="Your Favourites"
+        tools:layout="@layout/fragment_weather"
+        />
     <fragment
         android:id="@+id/favouriteLocationFragment"
         android:name="com.example.weatherforecastapp.ui.feature.favouritelocation.FavouriteLocationFragment"
-        android:label="fragment_favourite_location"
-        tools:layout="@layout/fragment_favourite_location" >
+        android:label="Favourites"
+        tools:layout="@layout/fragment_favourite_location">
         <action
-            android:id="@+id/action_favouriteLocationFragment_to_weatherFragment"
-            app:destination="@id/weatherFragment" />
+            android:id="@+id/action_favouriteLocationFragment_to_favouritesWeatherFragment"
+            app:destination="@id/favouritesWeatherFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/weatherForecastFragment"
-        android:name="com.example.weatherforecastapp.ui.feature.WeatherForecastFragment"
-        android:label="fragment_weather_forecast"
-        tools:layout="@layout/fragment_weather_forecast" >
-        <action
-            android:id="@+id/action_weatherForecastFragment_to_permissionDeniedFragment"
-            app:destination="@id/permissionDeniedFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/permissionDeniedFragment"
-        android:name="com.example.weatherforecastapp.ui.feature.PermissionDeniedFragment"
-        android:label="PermissionDeniedFragment" />
-    <fragment
-        android:id="@+id/splashScreen"
-        android:name="com.example.weatherforecastapp.ui.feature.SplashScreen"
-        android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
-        <action
-            android:id="@+id/action_splashScreen_to_weatherFragment"
-            app:destination="@id/weatherFragment" />
-        <action
-            android:id="@+id/action_splashScreen_to_permissionDeniedFragment"
-            app:destination="@id/permissionDeniedFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+    <!--    <fragment-->
+    <!--        android:id="@+id/weatherForecastFragment"-->
+    <!--        android:name="com.example.weatherforecastapp.ui.feature.WeatherForecastFragment"-->
+    <!--        android:label="fragment_weather_forecast"-->
+    <!--        tools:layout="@layout/fragment_weather_forecast" >-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_weatherForecastFragment_to_permissionDeniedFragment"-->
+    <!--            app:destination="@id/permissionDeniedFragment" />-->
+    <!--    </fragment>-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/permissionDeniedFragment"-->
+    <!--        android:name="com.example.weatherforecastapp.ui.feature.PermissionDeniedFragment"-->
+    <!--        android:label="PermissionDeniedFragment" />-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/splashScreen"-->
+    <!--        android:name="com.example.weatherforecastapp.ui.feature.SplashScreen"-->
+    <!--        android:label="fragment_splash_screen"-->
+    <!--        tools:layout="@layout/fragment_splash_screen" >-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_splashScreen_to_weatherFragment"-->
+    <!--            app:destination="@id/weatherFragment" />-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_splashScreen_to_permissionDeniedFragment"-->
+    <!--            app:destination="@id/permissionDeniedFragment"-->
+    <!--            app:popUpToInclusive="true" />-->
+    <!--    </fragment>-->
 </navigation>

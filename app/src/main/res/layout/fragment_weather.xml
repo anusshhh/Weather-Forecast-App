@@ -13,7 +13,7 @@
 
     <include
         android:id="@+id/permission_disabled"
-        layout="@layout/fragment_permission_denied"
+        layout="@layout/permission_disabled_layout"
         android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,9 +13,12 @@
     <string name="dateTimeString">Today, %s %s</string>
     <string name="insertSuccess">%s added to favourites</string>
     <string name="insertFail">Couldn\'t add to favourites.</string>
+    <string name="deleteSuccess">%s removed from favourites</string>
+    <string name="deleteFail">Couldn\'t remove from favourites.</string>
     <string name="invalid_search_query">Please enter valid location</string>
     <string name="favourite_locations_title">Favourite Locations</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="skip_for_now">Skip for now</string>
     <string name="turn_on_location">Turn on location</string>
+    <string name="temp_min_max">%s° / %s°</string>
 </resources>

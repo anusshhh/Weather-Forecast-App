@@ -9,9 +9,12 @@ import com.example.weatherforecastapp.network.ApiResponse
 import com.example.weatherforecastapp.repository.WeatherRepositoryImpl
 import kotlinx.coroutines.launch
 
-class WeatherViewModel (private val weatherRepositoryImpl: WeatherRepositoryImpl) : ViewModel() {
+class WeatherViewModel(private val weatherRepositoryImpl: WeatherRepositoryImpl) : ViewModel() {
     private val _weatherData = MutableLiveData<ApiResponse<WeatherData?>>()
     val weatherData: LiveData<ApiResponse<WeatherData?>> get() = _weatherData
+
+    private val _weatherForecastData = MutableLiveData<ApiResponse<WeatherData?>>()
+    val weatherForecastData: LiveData<ApiResponse<WeatherData?>> get() = _weatherForecastData
 
     fun getCurrentWeatherData(query: String) {
         viewModelScope.launch {
@@ -29,6 +32,28 @@ class WeatherViewModel (private val weatherRepositoryImpl: WeatherRepositoryImpl
                     _weatherData.value = weatherData
                 }
         }
+    }
 
+    fun getWeatherForecast(query: String) {
+        viewModelScope.launch {
+            weatherRepositoryImpl.getWeatherForecast(query)
+                .collect { weatherForecastData ->
+                    _weatherForecastData.value = weatherForecastData
+                }
+        }
+    }
+
+    fun getWeatherForecast(latitude: Double, longitude: Double) {
+        viewModelScope.launch {
+            weatherRepositoryImpl.getWeatherForecast(latitude, longitude)
+                .collect { weatherForecastData ->
+                    _weatherForecastData.value = weatherForecastData
+                }
+        }
+    }
+
+    fun onSearchQueryEntered(query:String){
+        getCurrentWeatherData(query)
+        getWeatherForecast(query)
     }
 }

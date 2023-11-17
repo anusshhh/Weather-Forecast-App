@@ -57,11 +57,11 @@ class SplashScreen : Fragment() {
 
     private fun checkLocationPermission() {
         val navController = findNavController()
-        if (requireContext().checkLocationPermission()) {
-            navController.navigate(R.id.action_splashScreen_to_weatherFragment)
-        } else {
-            navController.navigate(R.id.action_splashScreen_to_weatherFragment)
-        }
+//        if (requireContext().checkLocationPermission()) {
+//            navController.navigate(R.id.action_splashScreen_to_weatherFragment)
+//        } else {
+//            navController.navigate(R.id.action_splashScreen_to_weatherFragment)
+//        }
 
     }
 }

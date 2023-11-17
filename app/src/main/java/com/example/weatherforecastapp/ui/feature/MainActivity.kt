@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.ActivityMainBinding
 import com.example.weatherforecastapp.extensions.makeShortToast
@@ -22,44 +25,34 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
-
         setContentView(view)
 
+        setUpController()
+
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        navController = findNavController(R.id.nav_host_fragment)
+    private fun setUpController() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
 
-        val searchView = menu?.findItem(R.id.search)?.actionView as SearchView
-        searchView.queryHint = getString(R.string.searchHint)
-        val favoriteMenuItem: MenuItem = menu.findItem(R.id.favourites)
+        //navController = findNavController(R.id.nav_host_fragment)
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
-
-        favoriteMenuItem.setOnMenuItemClickListener {
-            onFavoriteMenuItemClick()
-            true
-        }
-
-        searchView.setOnQueryTextListener(
-            object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    handleSearchQuery(query)
-                    return false
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    return false
-                }
-            })
-        return super.onCreateOptionsMenu(menu)
     }
 
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.menu, menu)
+//
+//        return super.onCreateOptionsMenu(menu)
+//    }
 
-    private fun onFavoriteMenuItemClick() {
-        navController.popBackStack(R.id.favouriteLocationFragment,true)
-        navController.navigate(R.id.favouriteLocationFragment)
-    }
+//
+//    private fun onFavoriteMenuItemClick() {
+//        //  navController.popBackStack(R.id.favouriteLocationFragment, true)
+//        navController.navigate(R.id.action_weatherFragment_to_favouriteLocationFragment)
+//    }
 
     private fun handleSearchQuery(query: String?) {
         val inputQuery = query.toString()
@@ -72,6 +65,10 @@ class MainActivity : AppCompatActivity() {
             navController.popBackStack()
             navController.navigate(R.id.weatherFragment, bundle)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.popBackStack() || super.onSupportNavigateUp()
     }
 }
 

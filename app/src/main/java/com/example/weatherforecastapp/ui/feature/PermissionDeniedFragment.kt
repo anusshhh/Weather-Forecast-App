@@ -13,11 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.FragmentFavouriteLocationBinding
-import com.example.weatherforecastapp.databinding.FragmentPermissionDeniedBinding
 
 class PermissionDeniedFragment : Fragment() {
 
-    private lateinit var binding: FragmentPermissionDeniedBinding
 
     val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -47,17 +45,11 @@ class PermissionDeniedFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        binding = FragmentPermissionDeniedBinding.inflate(layoutInflater)
-        return binding.root
+return null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnEnableLocation.setOnClickListener {
-            requestLocationPermission()
-
-        }
 
     }
 

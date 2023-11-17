@@ -10,7 +10,7 @@
     />
     <item
         android:title="@string/favourite"
-        android:icon="@drawable/ic_favourite"
+        android:icon="@drawable/ic_favourite_filled"
         android:id="@+id/favourites"
         app:showAsAction="ifRoom"
         />

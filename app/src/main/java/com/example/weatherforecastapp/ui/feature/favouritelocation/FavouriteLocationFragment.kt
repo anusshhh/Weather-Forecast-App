@@ -56,7 +56,6 @@ class FavouriteLocationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
-
         updateUI()
     }
 
@@ -82,9 +81,13 @@ class FavouriteLocationFragment : Fragment() {
         favouriteLocationAdapter = FavouriteLocationAdapter { location ->
             val bundle = Bundle().apply {
                 putDouble("latitude", location.latitude)
-                putDouble("longitude",location.longitude)
+                putDouble("longitude", location.longitude)
+                putBoolean("isFromFavourites", true)
             }
-            navController.navigate(R.id.action_favouriteLocationFragment_to_weatherFragment,bundle)
+            navController.navigate(
+                R.id.action_favouriteLocationFragment_to_favouritesWeatherFragment,
+                bundle
+            )
         }
         favouriteLocationRecyclerView.adapter = favouriteLocationAdapter
         observeAllFavouriteLocations()
