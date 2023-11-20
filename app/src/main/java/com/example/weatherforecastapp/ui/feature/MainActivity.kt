@@ -1,19 +1,13 @@
 package com.example.weatherforecastapp.ui.feature
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.ActivityMainBinding
-import com.example.weatherforecastapp.databinding.FragmentFavouriteLocationBinding
-import com.example.weatherforecastapp.extensions.makeShortToast
 
 
 class MainActivity : AppCompatActivity() {

@@ -1,38 +1,24 @@
 package com.example.weatherforecastapp.ui.feature.favouritelocation
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.dao.FavouriteLocationDao
-import com.example.weatherforecastapp.dao.FavouriteLocationDao_Impl
 import com.example.weatherforecastapp.database.FavouriteLocationDatabase
 import com.example.weatherforecastapp.databinding.FragmentFavouriteLocationBinding
-import com.example.weatherforecastapp.databinding.FragmentWeatherBinding
 import com.example.weatherforecastapp.model.db.FavouriteLocation
-import com.example.weatherforecastapp.network.ApiClient
 import com.example.weatherforecastapp.repository.FavouriteLocationRepositoryImpl
-import com.example.weatherforecastapp.repository.WeatherRepositoryImpl
 import com.example.weatherforecastapp.ui.adapter.FavouriteLocationAdapter
-import com.example.weatherforecastapp.viewmodel.FavouriteLocationViewModel
-import com.example.weatherforecastapp.viewmodel.FavouriteLocationViewModelFactory
-import com.example.weatherforecastapp.viewmodel.WeatherViewModel
-import com.example.weatherforecastapp.viewmodel.WeatherViewModelFactory
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
@@ -74,10 +60,6 @@ class FavouriteLocationFragment : Fragment() {
                     binding.tvNoFavourites.visibility = View.VISIBLE
                     favouriteLocationRecyclerView.visibility = View.GONE
                 } else {
-                    Log.d(
-                        "DB TAG",
-                        "observeAllFavouriteLocations: Observer ho gaya : $favouriteLocations"
-                    )
                     binding.tvNoFavourites.visibility = View.GONE
                     favouriteLocationRecyclerView.visibility = View.VISIBLE
                     favouriteLocationAdapter.submitList(favouriteLocations)
@@ -122,20 +104,19 @@ class FavouriteLocationFragment : Fragment() {
 
     private fun alertBuilderForDelete(favouriteLocation: FavouriteLocation) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        builder.setMessage("Are you sure you want to delete it?")
+        builder.setMessage(getString(R.string.delete_confirmation))
             .setCancelable(false)
             .setPositiveButton(
-                "Yes"
+                getString(R.string.alert_builder_positive_response)
             ) { dialog, id ->
                 favouriteLocationViewModel.deleteAndGetAllFavouriteLocations(favouriteLocation)
                 dialog.cancel()
             }
             .setNegativeButton(
-                "No"
+                getString(R.string.alert_builder_negative_response)
             ) { dialog, id ->
                 dialog.cancel()
             }
-
         val alert: AlertDialog = builder.create()
         alert.show()
     }

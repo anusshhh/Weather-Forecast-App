@@ -12,18 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:padding="@dimen/dimen_5dp"
+        android:padding="@dimen/dimen_8dp"
         android:paddingBottom="@dimen/dimen_10dp">
 
         <TextView
             android:id="@+id/tv_datetime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_10dp"
-            android:fontFamily="@font/lato_regular"
+            android:fontFamily="@font/lato_bold"
             android:textColor="@color/black"
             android:textSize="@dimen/dimen_20sp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Mon, Nov 17" />
 
@@ -42,12 +42,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_10dp"
-            android:fontFamily="@font/lato_bold"
+            android:fontFamily="@font/lato_regular"
             android:textColor="@color/black"
             android:textSize="@dimen/dimen_20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_weather_icon"
             tools:text="24\u00B0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -8,13 +8,7 @@ import android.net.NetworkCapabilities
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.example.weatherforecastapp.R
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
@@ -25,12 +19,6 @@ fun Context.getImageResource(uri: String): Int {
 fun Context.makeShortToast(message: String) {
     Toast.makeText(
         this, message, Toast.LENGTH_SHORT
-    ).show()
-}
-
-fun Context.makeLongToast(message: String) {
-    Toast.makeText(
-        this, message, Toast.LENGTH_LONG
     ).show()
 }
 
@@ -96,14 +84,5 @@ fun Context.noInternetSnackbar(view: View, loadData: () -> Unit) : Snackbar{
     }
     snackbar.show()
     return snackbar
-}
-
-fun <T : Any?> LiveData<T>.observeOnce(observer: (T) -> Unit) {
-    observeForever(object : Observer<T> {
-        override fun onChanged(value: T) {
-            observer(value)
-            removeObserver(this)
-        }
-    })
 }
 

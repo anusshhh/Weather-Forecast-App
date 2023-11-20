@@ -1,4 +1,4 @@
-package com.example.weatherforecastapp.viewmodel
+package com.example.weatherforecastapp.ui.feature.weather
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -54,10 +54,5 @@ class WeatherViewModel(private val weatherRepositoryImpl: WeatherRepositoryImpl)
                     _weatherForecastData.value = weatherForecastData
                 }
         }
-    }
-
-    fun onSearchQueryEntered(query:String){
-        getCurrentWeatherData(query)
-        getWeatherForecast(query)
     }
 }

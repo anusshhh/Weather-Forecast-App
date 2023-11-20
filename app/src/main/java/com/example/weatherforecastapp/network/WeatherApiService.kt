@@ -20,7 +20,6 @@ interface WeatherApiService {
     @GET("timeline/{query}?unitGroup=metric&include=days%2Ccurrent&key=${BuildConfig.API_KEY}&contentType=json")
     suspend fun getWeatherForecast(@Path("query") query: String): Response<WeatherData>
 
-
     @GET("timeline/{latitude},{longitude}?unitGroup=metric&include=days%2Ccurrent&key=${BuildConfig.API_KEY}&contentType=json")
     suspend fun getWeatherForecast(
         @Path("latitude") latitude: Double,

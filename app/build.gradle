@@ -20,6 +20,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField("String", "API_KEY", '"G28TPVQC4L5Q28QKPD543JUK9"')
+        buildConfigField("String","BASE_URL",'"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/"')
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

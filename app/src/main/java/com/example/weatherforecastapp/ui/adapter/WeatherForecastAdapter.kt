@@ -4,15 +4,12 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherforecastapp.R
-import com.example.weatherforecastapp.databinding.FavouriteLocationCardBinding
 import com.example.weatherforecastapp.databinding.WeatherForecastCardBinding
 import com.example.weatherforecastapp.extensions.getImageResource
 import com.example.weatherforecastapp.model.api.Day
-import com.example.weatherforecastapp.model.api.WeatherData
 import com.example.weatherforecastapp.utils.DateUtils
 import com.example.weatherforecastapp.utils.FormattingUtils
 

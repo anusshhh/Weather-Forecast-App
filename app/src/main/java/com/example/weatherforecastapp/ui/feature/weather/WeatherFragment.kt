@@ -10,22 +10,16 @@ import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.MenuProvider
-import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -33,7 +27,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
 import com.airbnb.lottie.LottieAnimationView
 import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.dao.FavouriteLocationDao
@@ -54,25 +47,21 @@ import com.example.weatherforecastapp.network.ApiResponse
 import com.example.weatherforecastapp.repository.FavouriteLocationRepositoryImpl
 import com.example.weatherforecastapp.repository.WeatherRepositoryImpl
 import com.example.weatherforecastapp.ui.adapter.WeatherForecastAdapter
+import com.example.weatherforecastapp.ui.feature.favouritelocation.FavouriteLocationViewModel
+import com.example.weatherforecastapp.ui.feature.favouritelocation.FavouriteLocationViewModelFactory
 import com.example.weatherforecastapp.utils.DateUtils
 import com.example.weatherforecastapp.utils.FormattingUtils
 import com.example.weatherforecastapp.utils.FormattingUtils.formatCoordinates
 import com.example.weatherforecastapp.utils.LocationUtils
-import com.example.weatherforecastapp.viewmodel.FavouriteLocationViewModel
-import com.example.weatherforecastapp.viewmodel.FavouriteLocationViewModelFactory
-import com.example.weatherforecastapp.viewmodel.WeatherViewModel
-import com.example.weatherforecastapp.viewmodel.WeatherViewModelFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import kotlin.math.log
 
 class WeatherFragment : Fragment() {
     private var _binding: FragmentWeatherBinding? = null
@@ -188,9 +177,7 @@ class WeatherFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
         if (!requireContext().isNetworkAvailable()) {
-            Log.e("TAG", "onResume: Aaya", )
             noInternetSnackbar = requireContext().noInternetSnackbar(requireView()) {
                 loadData()
             }
@@ -302,10 +289,6 @@ class WeatherFragment : Fragment() {
                     formatCoordinates(location.latitude),
                     formatCoordinates(location.longitude)
                 )
-                Log.e(
-                    "TAG",
-                    "fetchLocationForWeatherApi: ${location.latitude},${location.longitude}",
-                )
             }
         }
 
@@ -379,12 +362,10 @@ class WeatherFragment : Fragment() {
             btnFavouriteLocation.setOnClickListener {
                 toggleFavoriteLocation(favouriteLocation!!)
             }
-
         }
     }
 
     fun checkExistingFavoriteLocation() {
-        Log.e("Check location", "checkExistingFavoriteLocation: Checking fav location")
         lifecycleScope.launch {
             val existingLocation = favouriteLocationViewModel.getFavoriteLocationByCoordinates(
                 formatCoordinates(favouriteLocation?.latitude ?: 0.0),
@@ -443,11 +424,8 @@ class WeatherFragment : Fragment() {
                     is ApiResponse.Error -> {
                         progressBar.invisible()
                         showWeatherDetailsErrorViews()
-                        requireContext().makeShortToast("No data found.")
-                        Log.e(
-                            "TAG",
-                            "observeWeatherData: Error - Visibility: ${binding.permissionEnabled.ivNoDataFound.visibility}"
-                        )
+                        parameterCardLoadingView()
+                        requireContext().makeShortToast(getString(R.string.no_data_found))
                     }
 
                     is ApiResponse.Loading -> {
@@ -455,7 +433,6 @@ class WeatherFragment : Fragment() {
                         hideWeatherDetailsViews()
                         parameterCardLoadingView()
                         hideWeatherDetailsErrorViews()
-                        Log.e("TAG", "observeWeatherData: Loading")
                     }
                 }
             }
@@ -465,11 +442,9 @@ class WeatherFragment : Fragment() {
     fun observeWeatherForecastData() {
         lifecycleScope.launch {
             weatherViewModel.weatherForecastData.observe(viewLifecycleOwner) { response ->
-                Log.e("TAG", "observeWeatherForecastData: $response")
                 when (response) {
                     is ApiResponse.Success -> {
                         val weatherData = response.data
-                        Log.e("TAG", "observeWeatherForecastData: ${weatherData?.days}")
                         if (weatherData != null) {
                             weatherForecastAdapter.submitList(response.data.days)
                             binding.permissionEnabled.shimmerForecast.gone()
@@ -478,14 +453,12 @@ class WeatherFragment : Fragment() {
                     }
 
                     is ApiResponse.Error -> {
-                        Log.e("TAG", "observeWeatherForecastData: Error")
                         hideWeatherForecastViews()
                         binding.permissionEnabled.shimmerForecast.gone()
 
                     }
 
                     is ApiResponse.Loading -> {
-                        Log.e("TAG", "observeWeatherForecastData: Loading")
                         binding.permissionEnabled.shimmerForecast.visible()
                         binding.permissionEnabled.shimmerForecast.startShimmer()
                         hideWeatherForecastViews()
@@ -534,7 +507,7 @@ class WeatherFragment : Fragment() {
 
     private fun buildAlertMessageNoGps() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+        builder.setMessage(getString(R.string.no_gps_builder_message))
             .setCancelable(false)
             .setPositiveButton(
                 "Yes"
@@ -542,7 +515,6 @@ class WeatherFragment : Fragment() {
                 dialog.cancel()
                 updatePermissionDisabledUI()
                 startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-                //isLocationAlertShown = false
             }
             .setNegativeButton(
                 "No"
@@ -631,9 +603,9 @@ class WeatherFragment : Fragment() {
     }
 
     private fun parameterCardLoadingView() {
-        binding.permissionEnabled.tvHumidityValue.text = "-"
-        binding.permissionEnabled.tvWindValue.text = "-"
-        binding.permissionEnabled.tvPrecipitationValue.text = "-"
+        binding.permissionEnabled.tvHumidityValue.text = getString(R.string.empty_parameter)
+        binding.permissionEnabled.tvWindValue.text = getString(R.string.empty_parameter)
+        binding.permissionEnabled.tvPrecipitationValue.text = getString(R.string.empty_parameter)
     }
 
     private fun hideWeatherForecastViews() {

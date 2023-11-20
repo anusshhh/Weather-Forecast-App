@@ -1,6 +1,5 @@
-package com.example.weatherforecastapp.viewmodel
+package com.example.weatherforecastapp.ui.feature.favouritelocation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
