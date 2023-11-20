@@ -44,14 +44,14 @@ class WeatherForecastAdapter :
         val context = binding.root.context
 
         weatherForecastDataList[position].apply {
-            val uri = FormattingUtils.formatIconName(weatherForecastData.icon)
+            val uri = FormattingUtils.formatIconName(weatherForecastData.icon.toString())
             val imageResource = context.getImageResource(uri)
             val temperatureText = context.getString(
                 R.string.temp_min_max,
                 weatherForecastData.tempmax.toString(),
                 weatherForecastData.tempmin.toString()
             )
-            val dateTime = DateUtils.convertDate(weatherForecastData.datetime)
+            val dateTime = DateUtils.convertDate(weatherForecastData.datetime.toString())
 
             if (imageResource != 0) {
                 val res = ContextCompat.getDrawable(context, imageResource)

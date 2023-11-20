@@ -9,7 +9,7 @@ import java.util.Locale
 object LocationUtils {
     fun getAddress(context: Context, latitude: Double, longitude: Double): String {
         val geocoder = Geocoder(context, Locale.getDefault())
-        lateinit var addressText : String
+        var addressText : String =""
 
         try {
             val addresses = geocoder.getFromLocation(latitude, longitude, 1)

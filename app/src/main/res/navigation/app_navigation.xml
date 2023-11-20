@@ -21,6 +21,7 @@
         android:label="Your Favourites"
         tools:layout="@layout/fragment_weather"
         />
+
     <fragment
         android:id="@+id/favouriteLocationFragment"
         android:name="com.example.weatherforecastapp.ui.feature.favouritelocation.FavouriteLocationFragment"
@@ -30,30 +31,5 @@
             android:id="@+id/action_favouriteLocationFragment_to_favouritesWeatherFragment"
             app:destination="@id/favouritesWeatherFragment" />
     </fragment>
-    <!--    <fragment-->
-    <!--        android:id="@+id/weatherForecastFragment"-->
-    <!--        android:name="com.example.weatherforecastapp.ui.feature.WeatherForecastFragment"-->
-    <!--        android:label="fragment_weather_forecast"-->
-    <!--        tools:layout="@layout/fragment_weather_forecast" >-->
-    <!--        <action-->
-    <!--            android:id="@+id/action_weatherForecastFragment_to_permissionDeniedFragment"-->
-    <!--            app:destination="@id/permissionDeniedFragment" />-->
-    <!--    </fragment>-->
-    <!--    <fragment-->
-    <!--        android:id="@+id/permissionDeniedFragment"-->
-    <!--        android:name="com.example.weatherforecastapp.ui.feature.PermissionDeniedFragment"-->
-    <!--        android:label="PermissionDeniedFragment" />-->
-    <!--    <fragment-->
-    <!--        android:id="@+id/splashScreen"-->
-    <!--        android:name="com.example.weatherforecastapp.ui.feature.SplashScreen"-->
-    <!--        android:label="fragment_splash_screen"-->
-    <!--        tools:layout="@layout/fragment_splash_screen" >-->
-    <!--        <action-->
-    <!--            android:id="@+id/action_splashScreen_to_weatherFragment"-->
-    <!--            app:destination="@id/weatherFragment" />-->
-    <!--        <action-->
-    <!--            android:id="@+id/action_splashScreen_to_permissionDeniedFragment"-->
-    <!--            app:destination="@id/permissionDeniedFragment"-->
-    <!--            app:popUpToInclusive="true" />-->
-    <!--    </fragment>-->
+
 </navigation>

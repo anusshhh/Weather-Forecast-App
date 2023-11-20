@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<item
-    android:title="@string/search"
-    android:icon="@drawable/ic_search"
-    android:id="@+id/search"
-    app:showAsAction="ifRoom|collapseActionView"
-    app:actionViewClass="androidx.appcompat.widget.SearchView"
-    />
     <item
-        android:title="@string/favourite"
-        android:icon="@drawable/ic_favourite_filled"
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+    <item
         android:id="@+id/favourites"
-        app:showAsAction="ifRoom"
-        />
+        android:icon="@drawable/ic_favourite_hollow"
+        android:title="@string/favourite"
+        app:showAsAction="ifRoom" />
 </menu>

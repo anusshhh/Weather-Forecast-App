@@ -9,4 +9,6 @@
     <color name="light_purple">#B7B2D2</color>
     <color name="dark_purple">#2C296E</color>
     <color name="lighter_blue">#E5F9FF</color>
+    <color name="red">#DB4437</color>
+    <color name="shimmer_color">#DDDDDD</color>
 </resources>

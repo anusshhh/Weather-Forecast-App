@@ -17,6 +17,7 @@ class WeatherViewModel(private val weatherRepositoryImpl: WeatherRepositoryImpl)
     val weatherForecastData: LiveData<ApiResponse<WeatherData?>> get() = _weatherForecastData
 
     fun getCurrentWeatherData(query: String) {
+        _weatherData.value =ApiResponse.Loading
         viewModelScope.launch {
             weatherRepositoryImpl.getCurrentWeatherData(query)
                 .collect { weatherData ->
@@ -26,6 +27,7 @@ class WeatherViewModel(private val weatherRepositoryImpl: WeatherRepositoryImpl)
     }
 
     fun getCurrentWeatherData(latitude: Double, longitude: Double) {
+        _weatherData.value =ApiResponse.Loading
         viewModelScope.launch {
             weatherRepositoryImpl.getCurrentWeatherData(latitude, longitude)
                 .collect { weatherData ->
@@ -35,6 +37,7 @@ class WeatherViewModel(private val weatherRepositoryImpl: WeatherRepositoryImpl)
     }
 
     fun getWeatherForecast(query: String) {
+        _weatherForecastData.value =ApiResponse.Loading
         viewModelScope.launch {
             weatherRepositoryImpl.getWeatherForecast(query)
                 .collect { weatherForecastData ->
@@ -44,6 +47,7 @@ class WeatherViewModel(private val weatherRepositoryImpl: WeatherRepositoryImpl)
     }
 
     fun getWeatherForecast(latitude: Double, longitude: Double) {
+        _weatherForecastData.value=ApiResponse.Loading
         viewModelScope.launch {
             weatherRepositoryImpl.getWeatherForecast(latitude, longitude)
                 .collect { weatherForecastData ->

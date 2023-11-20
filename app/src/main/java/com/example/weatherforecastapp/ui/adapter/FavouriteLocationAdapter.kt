@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatherforecastapp.R
 import com.example.weatherforecastapp.databinding.FavouriteLocationCardBinding
 import com.example.weatherforecastapp.model.db.FavouriteLocation
 
-class FavouriteLocationAdapter(private val onClick: (FavouriteLocation) -> Unit) :
+class FavouriteLocationAdapter(private val onClick: (FavouriteLocation) -> Unit,private val onDeleteClickListener: (FavouriteLocation) -> Unit) :
     RecyclerView.Adapter<FavouriteLocationAdapter.FavouriteLocationViewHolder>() {
 
     private var favouriteLocationList: MutableList<FavouriteLocation> =
@@ -34,6 +36,9 @@ class FavouriteLocationAdapter(private val onClick: (FavouriteLocation) -> Unit)
 
         holder.itemView.setOnClickListener{
             onClick.invoke(favouriteLocationList[position])
+        }
+        holder.itemView.findViewById<ImageButton>(R.id.btn_delete).setOnClickListener {
+            onDeleteClickListener.invoke(favouriteLocationList[position])
         }
     }
 

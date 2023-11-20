@@ -13,6 +13,7 @@
     <string name="dateTimeString">Today, %s %s</string>
     <string name="insertSuccess">%s added to favourites</string>
     <string name="insertFail">Couldn\'t add to favourites.</string>
+    <string name="something_went_wrong">Something went wrong.</string>
     <string name="deleteSuccess">%s removed from favourites</string>
     <string name="deleteFail">Couldn\'t remove from favourites.</string>
     <string name="invalid_search_query">Please enter valid location</string>
@@ -21,4 +22,14 @@
     <string name="skip_for_now">Skip for now</string>
     <string name="turn_on_location">Turn on location</string>
     <string name="temp_min_max">%s° / %s°</string>
+    <string name="no_data_found">No data found</string>
+    <string name="search_again">We couldn\'t find what you searched for. Try searching again.</string>
+    <string name="no_favourites">No favourites yet.</string>
+    <string name="humidity_value">%s%%</string>
+    <string name="precipitation_value">%s%%</string>
+    <string name="windspeed_value">%s km/h</string>
+    <string name="permission_alert_builder_title">Location Permission Required</string>
+    <string name="permission_alert_builder_message">To provide accurate weather information, we need your location.</string>
+    <string name="permission_alert_builder_positive">Open Settings</string>
+    <string name="permission_alert_builder_negative">Cancel</string>
 </resources>

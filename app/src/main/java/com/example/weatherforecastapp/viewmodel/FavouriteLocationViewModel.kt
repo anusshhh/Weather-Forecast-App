@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherforecastapp.model.db.FavouriteLocation
 import com.example.weatherforecastapp.repository.IFavouriteLocationRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FavouriteLocationViewModel(private val favouriteLocationRepository: IFavouriteLocationRepository) :
@@ -22,16 +23,15 @@ class FavouriteLocationViewModel(private val favouriteLocationRepository: IFavou
     val deleteResult: LiveData<Int>
         get() = _deleteResult
 
-
     init {
         getAllFavouriteLocations()
     }
 
     fun getAllFavouriteLocations() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             favouriteLocationRepository.getAllFavoriteLocations()
                 .collect { favouriteLocations ->
-                    _favouriteLocations.value = favouriteLocations
+                    _favouriteLocations.postValue(favouriteLocations)
                 }
         }
     }
@@ -40,7 +40,6 @@ class FavouriteLocationViewModel(private val favouriteLocationRepository: IFavou
         latitude: Double,
         longitude: Double
     ): FavouriteLocation? {
-
         return favouriteLocationRepository.getFavoriteLocationByCoordinates(
             latitude,
             longitude
@@ -48,21 +47,29 @@ class FavouriteLocationViewModel(private val favouriteLocationRepository: IFavou
     }
 
     fun insertFavouriteLocation(favouriteLocation: FavouriteLocation) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             if (getFavoriteLocationByCoordinates(favouriteLocation.latitude,favouriteLocation.longitude) == null
             ) {
                 val result = favouriteLocationRepository.addFavoriteLocations(favouriteLocation)
-                _insertResult.value = result
+                _insertResult.postValue(result)
             } else {
-                _insertResult.value = -1
+                _insertResult.postValue(-1)
             }
         }
     }
 
     fun deleteFavouriteLocation(favouriteLocation: FavouriteLocation) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val result = favouriteLocationRepository.deleteFavouriteLocation(favouriteLocation)
-            _deleteResult.value = result
+            _deleteResult.postValue(result)
+        }
+    }
+
+    fun deleteAndGetAllFavouriteLocations(favouriteLocation: FavouriteLocation) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = favouriteLocationRepository.deleteFavouriteLocation(favouriteLocation)
+            _deleteResult.postValue(result)
+            getAllFavouriteLocations()
         }
     }
 

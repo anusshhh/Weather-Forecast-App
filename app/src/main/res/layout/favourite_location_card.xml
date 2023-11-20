@@ -9,7 +9,7 @@
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/dimen_15dp"
     app:cardElevation="@dimen/dimen_0dp"
-    app:contentPadding="@dimen/dimen_15dp"
+    app:contentPadding="@dimen/dimen_10dp"
     app:strokeWidth="@dimen/dimen_0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,19 +21,34 @@
             android:layout_width="@dimen/dimen_30dp"
             android:layout_height="@dimen/dimen_30dp"
             android:src="@drawable/ic_location"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_locationName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_20dp"
             android:fontFamily="@font/lato_bold"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textSize="@dimen/dimen_20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_locationIcon"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_delete"
             tools:text="Mumbai,India" />
+
+        <ImageButton
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

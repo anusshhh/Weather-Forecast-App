@@ -20,7 +20,7 @@ data class Day(
     val precip: Double,
     val precipcover: Double,
     val precipprob: Double,
-    val preciptype: Double,
+    val preciptype: List<String>?,
     val pressure: Double,
     val severerisk: Double,
     val snow: Double,

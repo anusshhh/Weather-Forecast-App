@@ -14,13 +14,60 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/temperature_top_details_layout"
+                android:id="@+id/layout_weather_details"
                 android:layout_width="@dimen/dimen_0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/sky_blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/loader" />
+
+                <TextView
+                    android:id="@+id/tv_no_data_found"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen_20dp"
+                    android:text="@string/no_data_found"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_30sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/iv_no_data_found"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_no_data_found"
+                    android:layout_width="@dimen/dimen_200dp"
+                    android:layout_height="@dimen/dimen_200dp"
+                    android:src="@drawable/ic_no_data_found"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_search_again"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_20dp"
+                    android:text="@string/search_again"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_20sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_no_data_found" />
+
 
                 <TextView
                     android:id="@+id/location_address"
@@ -77,14 +124,14 @@
                     android:id="@+id/weather_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/lato_regular"
                     android:layout_marginBottom="@dimen/dimen_80dp"
+                    android:fontFamily="@font/lato_regular"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dimen_25sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/temperature"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     tools:text="Cloudy" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -105,7 +152,7 @@
                 app:cardCornerRadius="@dimen/dimen_20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/temperature_top_details_layout"
+                app:layout_constraintTop_toBottomOf="@id/layout_weather_details"
                 app:strokeWidth="@dimen/dimen_0dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -141,7 +188,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lato_bold"
                         android:textAlignment="center"
-                        android:textSize="@dimen/dimen_20sp"
+                        android:textSize="@dimen/dimen_17sp"
                         app:layout_constraintEnd_toEndOf="@id/card_first_guideline"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_humidity"
@@ -181,7 +228,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lato_bold"
                         android:textAlignment="center"
-                        android:textSize="@dimen/dimen_20sp"
+                        android:textSize="@dimen/dimen_17sp"
                         app:layout_constraintEnd_toEndOf="@id/card_second_guideline"
                         app:layout_constraintStart_toStartOf="@id/card_first_guideline"
                         app:layout_constraintTop_toBottomOf="@id/tv_precipitation"
@@ -220,7 +267,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lato_bold"
                         android:textAlignment="center"
-                        android:textSize="@dimen/dimen_20sp"
+                        android:textSize="@dimen/dimen_17sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/card_second_guideline"
                         app:layout_constraintTop_toBottomOf="@id/tv_wind"
@@ -228,34 +275,66 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/weather_forecast_card"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_weather_forecast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_20dp"
-                android:layout_marginTop="@dimen/dimen_20dp"
-                app:cardCornerRadius="@dimen/dimen_20dp"
+                android:layout_marginVertical="@dimen/dimen_20dp"
+                android:paddingBottom="@dimen/dimen_10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/parameters_card"
+                tools:itemCount="3"
+                tools:listitem="@layout/weather_forecast_card" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/dimen_20dp"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/parameters_card">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_weather_forecast"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:itemCount="3"
-                    tools:listitem="@layout/weather_forecast_card" />
-            </com.google.android.material.card.MaterialCardView>
+                    android:orientation="horizontal">
+
+                    <include layout="@layout/shimmer_weather_forecast_layout" />
+
+                    <include layout="@layout/shimmer_weather_forecast_layout" />
+
+                    <include layout="@layout/shimmer_weather_forecast_layout" />
+
+                    <include layout="@layout/shimmer_weather_forecast_layout" />
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_my_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_15dp"
+        android:layout_marginBottom="@dimen/dimen_7dp"
+        android:backgroundTint="@color/sky_blue"
+        android:text="My location"
+        app:layout_constraintBottom_toTopOf="@id/btn_favourite_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_location"
+        app:tint="@color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_favourite_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dimen_20dp"
+        android:layout_marginEnd="@dimen/dimen_15dp"
         android:layout_marginBottom="@dimen/dimen_20dp"
         android:backgroundTint="@color/sky_blue"
         android:text="Add to favourites"
